@@ -1,45 +1,32 @@
-function calculateFinalScore(student) {
-    // Extracting properties from the student object
-    const { name, testScore, schoolGrade, isFFamily } = student;
-  
-    // Validating input values
-    if (
-      typeof name !== "string" ||
-      typeof testScore !== "number" ||
-      typeof schoolGrade !== "number" ||
-      typeof isFFamily !== "boolean"
-    ) {
-      throw new Error("Invalid input types");
-    }
-    if (testScore > 50 || schoolGrade > 30) {
-      throw new Error("Scores exceed maximum allowed values");
-    }
-  
-    // Calculating the final score
-    let finalScore = testScore + schoolGrade;
-    if (isFFamily) {
+function calculateFinalScore(obj) {
+  if (
+    typeof obj === "object" ||
+    typeof obj.testScore === "number" ||
+    typeof obj.schoolGrade === "number" ||
+    typeof obj.isFFamily === "boolean" ||
+    obj.testScore > 50 ||
+    obj.schoolGrade > 30
+  ) {
+    let finalScore = obj.testScore + obj.schoolGrade;
+    if (obj.isFFamily) {
       finalScore += 20;
+      return finalScore >= 80;
+    } else if (!obj.isFFamily) {
+      finalScore += 0;
+      return finalScore >= 80;
     }
-  
-    // Checking if the final score is 80 or above
-    const isAdmitted = finalScore >= 80;
-  
-    // Returning the result
-    return {
-      name: name,
-      finalScore: finalScore,
-      isAdmitted: isAdmitted,
-    };
+  } else {
+    return "invalid input";
   }
-  
-  // Example usage
-  const rajib = {
-    name: "Rajib",
-    testScore: 45,
-    schoolGrade: 28,
-    isFFamily: true,
-  };
-  
-  const result = calculateFinalScore(rajib);
-  console.log(result); // { name: 'Rajib', finalScore: 93, isAdmitted: true }
-  
+}
+
+let result = calculateFinalScore({ 
+  name: "Rajib", 
+  testScore: 80,  
+  schoolGrade: 'this is', 
+  isFFamily : true 
+})
+
+let name = calculateFinalScore('this is showrov');
+
+console.log(result);

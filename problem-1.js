@@ -8,6 +8,3 @@ function calculateTax(income, expenses) {
   }
 }
 
-let result = calculateTax(6000, -1500);
-console.log(result);
-

@@ -14,3 +14,4 @@ function waitingTime(waitingTimes, serialNumber) {
     return "Invalid Input";
   }
 }
+
